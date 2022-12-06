@@ -16,9 +16,11 @@ pub fn main() {
                 temp_total += input.parse::<i32>().unwrap();
             }
         }
-
     }
     elves_totals.sort();
     println!("Most Calories: {}", elves_totals.last().unwrap());
-    println!("Sum of top three most Calories: {}", elves_totals.iter().rev().take(3).sum::<i32>());
+    println!(
+        "Sum of top three most Calories: {}",
+        elves_totals.iter().rev().take(3).sum::<i32>()
+    );
 }
