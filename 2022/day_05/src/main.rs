@@ -1,4 +1,3 @@
-use crate::util::read_lines;
 use regex::{Captures, Regex};
 
 #[derive(Debug, Clone)]
@@ -25,23 +24,23 @@ fn get_capture_as_int(captures: &Captures, index: usize) -> usize {
 }
 
 pub fn main() {
-    let lines = read_lines("./src/day_05/input");
+    println!("Day 5!");
+    let lines = include_str!("input").lines();
     let mut crates = Vec::new();
     let mut instructions = Vec::new();
     let mut input_bit = true;
     for line in lines {
-        let input = line.unwrap();
-        if input.is_empty() {
+        if line.is_empty() {
             input_bit = false;
             continue;
         }
         if input_bit {
-            crates.push(input);
+            crates.push(line);
         } else {
-            instructions.push(input);
+            instructions.push(line);
         }
     }
-    println!("{:?}", crates);
+
     let mut stacks = Vec::new();
     let stack_count_line = crates.pop().unwrap();
     let re = Regex::new(r"(\d*)\W*$").unwrap();
@@ -59,10 +58,10 @@ pub fn main() {
             if !crate_name.is_whitespace() {
                 stack.push(crate_name);
             }
-            println!("{:?}", crate_name);
+
         }
     }
-    println!("{:?}", stacks);
+
     for line in instructions {
         let re = Regex::new(r"move (\d*) from (\d*) to (\d*)").unwrap();
         let captures = re.captures(&line).unwrap();

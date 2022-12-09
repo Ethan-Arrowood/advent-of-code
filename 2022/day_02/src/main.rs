@@ -15,7 +15,6 @@ pub fn rps_shape_value(input: RPS) -> i32 {
 
 pub mod p1 {
     use super::{rps_shape_value, RPS};
-    use crate::util;
 
     pub fn get_rps_shape(input: &str) -> RPS {
         match input {
@@ -41,13 +40,12 @@ pub mod p1 {
 
     pub fn main() {
         println!("Day 2 - Part 1");
-        let lines = util::read_lines("./src/day_02/input");
+        let lines = include_str!("input").lines();
 
         let mut score = 0;
 
         for line in lines {
-            let input = line.unwrap();
-            let strategy: Vec<&str> = input.split(" ").collect();
+            let strategy: Vec<&str> = line.split(" ").collect();
             if strategy.len() != 2 {
                 panic!("Invalid input {:?}", strategy);
             }
@@ -63,7 +61,6 @@ pub mod p1 {
 
 pub mod p2 {
     use super::{rps_shape_value, RPS};
-    use crate::util;
 
     #[derive(Clone, Copy, PartialEq)]
     pub enum Outcome {
@@ -116,13 +113,12 @@ pub mod p2 {
 
     pub fn main() {
         println!("Day 2 - Part 2");
-        let lines = util::read_lines("./src/day_02/input");
+        let lines = include_str!("input").lines();
 
         let mut score = 0;
 
         for line in lines {
-            let input = line.unwrap();
-            let strategy: Vec<&str> = input.split(" ").collect();
+            let strategy: Vec<&str> = line.split(" ").collect();
             if strategy.len() != 2 {
                 panic!("Invalid input {:?}", strategy);
             }

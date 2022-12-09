@@ -1,5 +1,3 @@
-use crate::util::read_lines;
-
 #[derive(Debug, PartialEq)]
 pub enum Overlap {
     Complete,
@@ -18,12 +16,11 @@ pub fn overlap(x1: i32, y1: i32, x2: i32, y2: i32) -> Overlap {
 }
 
 pub fn main() {
-    let lines = read_lines("./src/day_04/input");
+    let lines = include_str!("input").lines();
     let mut complete_overlaps = 0;
     let mut partial_overlaps = 0;
     for line in lines {
-        let input = line.unwrap();
-        let result = input
+        let result = line
             .split(",")
             .flat_map(|s| s.split("-"))
             .map(|s| s.parse())

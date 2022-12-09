@@ -1,19 +1,16 @@
-use crate::util;
-
-pub fn main() {
+fn main() {
     println!("Day 1");
-    let lines = util::read_lines("./src/day_01/input");
+    let lines = include_str!("input").lines();
     let mut elves_totals: Vec<i32> = Vec::new();
     let mut temp_total: i32 = 0;
     for line in lines {
-        let input = line.unwrap();
-        match input.as_str() {
+        match line {
             "" => {
                 elves_totals.push(temp_total);
                 temp_total = 0;
             }
             _ => {
-                temp_total += input.parse::<i32>().unwrap();
+                temp_total += line.parse::<i32>().unwrap();
             }
         }
     }

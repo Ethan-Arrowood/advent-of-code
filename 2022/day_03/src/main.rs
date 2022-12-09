@@ -9,7 +9,6 @@ pub fn get_item_priority(item: &str) -> i32 {
 
 pub mod p1 {
     use super::get_item_priority;
-    use crate::util;
     use std::collections::HashMap;
 
     #[derive(Debug)]
@@ -43,7 +42,7 @@ pub mod p1 {
 
     pub fn main() {
         println!("Day 3 - Part 1");
-        let input = util::read_file("./src/day_03/input");
+        let input = include_str!("input");
         let rucksacks = input.split("\n").filter_map(|r| {
             if !r.is_empty() {
                 Some(Rucksack::new(r))
@@ -61,14 +60,12 @@ pub mod p1 {
 
 pub mod p2 {
     use super::get_item_priority;
-    use crate::util;
     use std::collections::{HashMap, HashSet};
 
     pub fn main() {
         println!("Day 3 - Part 2");
-        let input = util::read_lines("./src/day_03/input");
+        let lines: Vec<&str> = include_str!("input").lines().collect();
         let mut groups = Vec::new();
-        let lines: Vec<String> = input.map(|l| l.unwrap()).collect();
         for i in (0..lines.len()).step_by(3) {
             groups.push(&lines[i..i + 3]);
         }
