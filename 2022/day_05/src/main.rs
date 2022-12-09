@@ -58,7 +58,6 @@ pub fn main() {
             if !crate_name.is_whitespace() {
                 stack.push(crate_name);
             }
-
         }
     }
 
