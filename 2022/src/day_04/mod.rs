@@ -23,13 +23,16 @@ pub fn main () {
     let mut partial_overlaps = 0;
     for line in lines {
         let input = line.unwrap();
-        let pairs: Vec<&str> = input.split(",").collect();
-        let pair_one: Vec<&str> = pairs.get(0).unwrap().split("-").collect();
-        let pair_two: Vec<&str> = pairs.get(1).unwrap().split("-").collect();
-        let x1 = pair_one.get(0).unwrap().parse::<i32>().unwrap();
-        let y1 = pair_one.get(1).unwrap().parse::<i32>().unwrap();
-        let x2 = pair_two.get(0).unwrap().parse::<i32>().unwrap();
-        let y2 = pair_two.get(1).unwrap().parse::<i32>().unwrap();
+        let result = input
+            .split(",")
+            .flat_map(|s| s.split("-"))
+            .map(|s| s.parse())
+            .collect::<Result<Vec<i32>, _>>()
+            .unwrap();
+        let x1 = result[0];
+        let y1 = result[1];
+        let x2 = result[2];
+        let y2 = result[3];
         
         match overlap(x1, y1, x2, y2) {
             Overlap::Complete => {
