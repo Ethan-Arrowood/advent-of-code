@@ -8,9 +8,9 @@ pub fn get_item_priority(item: &str) -> i32 {
 }
 
 pub mod p1 {
+    use super::get_item_priority;
     use crate::util;
     use std::collections::HashMap;
-    use super::get_item_priority;
 
     #[derive(Debug)]
     pub struct Rucksack<'a> {
@@ -60,9 +60,9 @@ pub mod p1 {
 }
 
 pub mod p2 {
-    use std::collections::{HashMap, HashSet};
-    use crate::util;
     use super::get_item_priority;
+    use crate::util;
+    use std::collections::{HashMap, HashSet};
 
     pub fn main() {
         println!("Day 3 - Part 2");

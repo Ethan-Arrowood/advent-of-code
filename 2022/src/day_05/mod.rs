@@ -1,25 +1,30 @@
 use crate::util::read_lines;
-use regex::{Regex, Captures};
+use regex::{Captures, Regex};
 
 #[derive(Debug, Clone)]
 struct Stack<T> {
-    items: Vec<T>
+    items: Vec<T>,
 }
 
 impl<T> Stack<T> {
-    pub fn push (&mut self, item: T) {
+    pub fn push(&mut self, item: T) {
         self.items.push(item)
     }
-    pub fn pop (&mut self) -> T {
+    pub fn pop(&mut self) -> T {
         self.items.pop().unwrap()
     }
 }
 
-fn get_capture_as_int (captures: &Captures, index: usize) -> usize {
-    captures.get(index).unwrap().as_str().parse::<usize>().unwrap()
+fn get_capture_as_int(captures: &Captures, index: usize) -> usize {
+    captures
+        .get(index)
+        .unwrap()
+        .as_str()
+        .parse::<usize>()
+        .unwrap()
 }
 
-pub fn main () {
+pub fn main() {
     let lines = read_lines("./src/day_05/input");
     let mut crates = Vec::new();
     let mut instructions = Vec::new();
@@ -43,11 +48,13 @@ pub fn main () {
     let caps = re.captures(&stack_count_line).unwrap();
     let stack_count = get_capture_as_int(&caps, 1);
     for _ in 0..stack_count {
-        stacks.push(Stack { items: Vec::<char>::new() });
+        stacks.push(Stack {
+            items: Vec::<char>::new(),
+        });
     }
     for line in crates.into_iter().rev() {
-        for i in 0..=line.len()/4 {
-            let crate_name = line.as_bytes()[(i*4)+1] as char;
+        for i in 0..=line.len() / 4 {
+            let crate_name = line.as_bytes()[(i * 4) + 1] as char;
             let stack = stacks.get_mut(i).unwrap();
             if !crate_name.is_whitespace() {
                 stack.push(crate_name);
@@ -65,16 +72,16 @@ pub fn main () {
 
         let mut items = Vec::new();
 
-        let from_stack = stacks.get_mut(from_stack_index-1).unwrap();
-        for _ in 0..=num_to_move-1 {
+        let from_stack = stacks.get_mut(from_stack_index - 1).unwrap();
+        for _ in 0..=num_to_move - 1 {
             items.push(from_stack.pop());
         }
 
         // toggle this line for answers to part 1 and part 2
         items.reverse();
 
-        let to_stack = stacks.get_mut(to_stack_index-1).unwrap();
-        for i in 0..=num_to_move-1 {
+        let to_stack = stacks.get_mut(to_stack_index - 1).unwrap();
+        for i in 0..=num_to_move - 1 {
             to_stack.push(*items.get(i).unwrap());
         }
     }
