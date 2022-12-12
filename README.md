@@ -9,3 +9,4 @@ A repository for my Advent of Code solutions 🌟🎄
   - [Day 4](2022/day_04) 🌟🌟
   - [Day 5](2022/day_05) 🌟🌟
   - [Day 6](2022/day_06) 🌟🌟
+  - [Day 7](2022/day_07/node) 🌟🌟
